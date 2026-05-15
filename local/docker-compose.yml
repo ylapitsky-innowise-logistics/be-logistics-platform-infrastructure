@@ -20,23 +20,23 @@ services:
       timeout: 5s
       retries: 5
 
-#  # MongoDB (на будущее, если понадобится)
-#  mongodb:
-#    image: mongo:7
-#    container_name: logistics-mongodb
-#    environment:
+  # MongoDB
+  mongodb:
+    image: mongo:7
+    container_name: logistics-mongodb
+#    environment:         # 👈 ЗАКОММЕНТИРОВАЛ для разработки, потом включу (без аутентификации для разработки)
 #      MONGO_INITDB_ROOT_USERNAME: root
 #      MONGO_INITDB_ROOT_PASSWORD: root
 #      MONGO_INITDB_DATABASE: logistics_logs
-#    ports:
-#      - "27017:27017"
-#    volumes:
-#      - mongo_data:/data/db
-#    healthcheck:
-#      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-#      interval: 5s
-#      timeout: 5s
-#      retries: 5
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
