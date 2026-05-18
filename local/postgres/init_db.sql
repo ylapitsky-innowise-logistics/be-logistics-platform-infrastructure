@@ -1,5 +1,5 @@
 -- User Service
-CREATE SCHEMA IF NOT EXISTS user_sschema;
+CREATE SCHEMA IF NOT EXISTS user_schema;
 
 -- Transport Service
 CREATE SCHEMA IF NOT EXISTS transport_schema;
