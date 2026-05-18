@@ -6,16 +6,24 @@ services:
     image: postgres:16-alpine
     container_name: logistics-postgres
     environment:
-      POSTGRES_DB: logistics_user_db
-      POSTGRES_USER: logistics_user
-      POSTGRES_PASSWORD: logistics_pass
+#      POSTGRES_DB: logistics_user_db, logistics_cargo_db, logistics_delivery_db, logistics_payment_db, logistics_transport_db
+      POSTGRES_DB: postgres  # временная БД для инициализации
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./local/postgres:/docker-entrypoint-initdb.d   # ✅ для контроля
+      # Монтируем файлы инициализации в правильном порядке
+      - ./local/postgres/01-create-databases.sql:/docker-entrypoint-initdb.d/01-create-databases.sql
+      - ./local/postgres/02-user-schema.sql:/docker-entrypoint-initdb.d/02-user-schema.sql
+      - ./local/postgres/03-cargo-schema.sql:/docker-entrypoint-initdb.d/03-cargo-schema.sql
+      - ./local/postgres/04-delivery-schema.sql:/docker-entrypoint-initdb.d/04-delivery-schema.sql
+      - ./local/postgres/05-payment-schema.sql:/docker-entrypoint-initdb.d/05-payment-schema.sql
+      - ./local/postgres/06-transport-schema.sql:/docker-entrypoint-initdb.d/06-transport-schema.sql
+      - ./local/postgres/07-notification-schema.sql:/docker-entrypoint-initdb.d/07-notification-schema.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U logistics_user -d logistics_user_db"]
+      test: [ "CMD-SHELL", "pg_isready -U logistics_user -d postgres" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -27,11 +35,12 @@ services:
 #    environment:         # 👈 ЗАКОММЕНТИРОВАЛ для разработки, потом включу (без аутентификации для разработки)
 #      MONGO_INITDB_ROOT_USERNAME: root
 #      MONGO_INITDB_ROOT_PASSWORD: root
-#      MONGO_INITDB_DATABASE: logistics_logs
+#      MONGO_INITDB_DATABASE: logistics_events
     ports:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+      - ./local/mongodb/init.js:/docker-entrypoint-initdb.d/init.js
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 5s
