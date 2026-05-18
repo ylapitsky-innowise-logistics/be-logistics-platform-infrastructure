@@ -1,4 +1,31 @@
 
+## Три БД - при разработке будет так^
+1. `postgres-keycloak` _(порт 5433)_ — отдельный PostgreSQL только для Keycloak. Keycloak использует свою собственную базу, не смешиваясь с другими сервисами.
+2. `postgres` _(порт 5432)_ — ещё один PostgreSQL, вероятно, для ваших приложений/микросервисов. У него подключена папка ./postgres с инициализационными скриптами.
+3. `mongodb` _(порт 27017)_ — MongoDB, документоориентированная БД, для других задач.
+
+---
+# БД **`postgres`:**
+## Именование Схем (Schema)
+### Формат: {service_name}_service
+
+| Сервис 	              | Схема                 |
+|:----------------------|:----------------------|
+| User Service	         | user_service          |
+| Transport Service	    | transport_service     |
+| Delivery Service	     | delivery_service      |
+| Cargo Service	        | cargo_service         |
+| Payment Service	      | payment_service       |
+| Notification Service	 | notification_service  | 
+
+### Порт: 5432
+- POSTGRES_DB: postgres
+- POTGRES_USER: postgres
+- POSTGRES_PASSWORD: postgres
+
+---
+# Далее, 2-я часть проекта:
+
 ## Именование Баз Данных (Database)
 ### Формат: logistics_{service_name}_db
 
@@ -14,44 +41,6 @@
 ---
 #### 1 cсервис = 1 БД;
 #### Один PostgreSQL контейнер с разными БД;
-
----
-## Именование Схем (Schema)
-### Формат: {service_name}_schema или просто public
-
-| Сервис 	              | Схема               |
-|:----------------------|:--------------------|
-| User Service	         | user_schema         |
-| Cargo Service	        | cargo_schema        |
-| Delivery Service	     | delivery_schema     |
-| Payment Service	      | payment_schema      |
-| Transport Service	    | transport_schema    |
-| Notification Service	 | notification_schema | 
-
-## Все в 1 таблице
-
-| Сервис	               | БД	                       | Порт	           | Пользователь      | Схема               |
-|:----------------------|:--------------------------|:----------------|:------------------|:--------------------|
-| User Service	         | logistics_user_db         | 5432            | logistics_admin	  | user_schema         |
-| Cargo Service	        | logistics_cargo_db	       | 5432 (или 5433)	| logistics_admin	  | cargo_schema        |
-| Delivery Service	     | logistics_delivery_db	    | 5432 (или 5434)	| logistics_admin	  | elivery_schema      |
-| Payment Service	      | logistics_payment_db	     | 5432	           | logistics_admin	  | payment_schema      |
-| Transport Service	    | logistics_transport_db	   | 5432	           | logistics_admin	  | transport_schema    |
-| Notification Service	 | logistics_notification_db	| 5432	           | logistics_admin	  | notification_schema | 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
