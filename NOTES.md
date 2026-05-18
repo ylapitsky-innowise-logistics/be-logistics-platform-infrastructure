@@ -7,16 +7,16 @@
 ---
 # БД **`postgres`:**
 ## Именование Схем (Schema)
-### Формат: {service_name}_service
+### Формат: {service_name}_schema
 
 | Сервис 	              | Схема                 |
 |:----------------------|:----------------------|
-| User Service	         | user_service          |
-| Transport Service	    | transport_service     |
-| Delivery Service	     | delivery_service      |
-| Cargo Service	        | cargo_service         |
-| Payment Service	      | payment_service       |
-| Notification Service	 | notification_service  | 
+| User Service	         | user_schema          |
+| Transport Service	    | transport_schema     |
+| Delivery Service	     | delivery_schema      |
+| Cargo Service	        | cargo_schema         |
+| Payment Service	      | payment_schema       |
+| Notification Service	 | notification_schema  | 
 
 ### Порт: 5432
 - POSTGRES_DB: postgres
