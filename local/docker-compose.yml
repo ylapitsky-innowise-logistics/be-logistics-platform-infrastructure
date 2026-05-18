@@ -39,6 +39,47 @@ services:
       timeout: 5s
       retries: 5
 
+
+# Добавляю теперь   keycloak:
+  postgres-keycloak:
+    image: postgres:16-alpine
+    container_name: logistics-postgres-keycloak
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=keycloak
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_keycloak_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.7
+    container_name: logistics-keycloak
+    depends_on:
+      - postgres-keycloak
+    command: [ "start-dev", "--import-realm" ]
+    ports:
+      - "8080:8080"
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres-keycloak
+      KC_DB_URL_PORT: 5432
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: postgres
+    volumes:
+      - ./keycloak/realms:/opt/keycloak/data/import
+      - ./keycloak/exports:/tmp/keycloak-export
+
 volumes:
   postgres_data:
   mongo_data:
+  postgres_keycloak_data:
