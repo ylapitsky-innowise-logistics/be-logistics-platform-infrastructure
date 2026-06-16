@@ -39,6 +39,23 @@ services:
       timeout: 5s
       retries: 5
 
+  # 🟢 ВЕБ-АДМИНКА ДЛЯ ПРОСМОТРА MONGO ЧЕРЕЗ БРАУЗЕР (ДОБАВЛЕНО СЮДА)
+  mongo-express:
+    image: mongo-express:latest
+    container_name: logistics-mongo-express
+    restart: always
+    depends_on:
+      mongodb:
+        condition: service_healthy # Ждем, пока Mongo успешно пройдет свой пинг-тест
+    ports:
+      - "8081:8081" # Порт, который будем открывать в браузере
+    environment:
+      ME_CONFIG_MONGODB_SERVER: logistics-mongodb # Имя контейнера Mongo, к которому подключаемся
+      ME_CONFIG_MONGODB_PORT: 27017
+
+      # 🟢 ОТКЛЮЧАЕМ ТРЕБОВАНИЕ ПАРОЛЯ ПРИ ВХОДЕ В БРАУЗЕР (для разработки) // по умолчанию: Username:admin Password:pass
+      ME_CONFIG_BASICAUTH: "false"
+
 
 # Добавляю теперь   keycloak:
   postgres-keycloak:
