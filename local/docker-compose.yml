@@ -2,35 +2,35 @@ name: logistics-platform
 
 services:
 
-  # Postgres
+  # 🐘 Единая PostgreSQL для всей логистической платформы
   postgres:
     image: postgres:16-alpine
-    container_name: logistics-postgres
+    container_name: logistics-postgres_db
     environment:
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=logistics_platform_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5432:5432"
+      - "5439:5432"  # 👈 1. Изменили ВНЕШНИЙ порт на 5439 для предотвращения конфликтов
     volumes:
       - postgres_data:/var/lib/postgresql/data # Так контейнер НЕ использует анонимный volume, который удаляется при docker-compose down -v
       - ./postgres:/docker-entrypoint-initdb.d
     healthcheck: # Проверка готовности PostgreSQL принимать запросы
-      test: [ "CMD-SHELL", "pg_isready -U postgres -d postgres" ]
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d logistics_platform_db" ]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  # MongoDB
+  # 🍃 MongoDB для документов и картинок Cargo Service
   mongodb:
     image: mongo:7
-    container_name: logistics-mongodb
+    container_name: logistics-mongo_db
     environment:
 #      MONGO_INITDB_ROOT_USERNAME: root  # 👈 ЗАКОММЕНТИРОВАЛ для разработки, потом включу (без аутентификации для разработки)
 #      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: logistics_mongo
+      MONGO_INITDB_DATABASE: logistics_cargo_mongo_db  # 👈 1. Поменяли имя дефолтной БД
     ports:
-      - "27017:27017"
+      - "27020:27017"  # 👈 2. Поменяли ВНЕШНИЙ порт на 27020. Внутри контейнера всегда 27017.
     volumes:
       - mongo_data:/data/db   # 👈именую volume
     healthcheck: # Проверка готовности MongoDB
@@ -39,7 +39,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # 🟢 ВЕБ-АДМИНКА ДЛЯ ПРОСМОТРА MONGO ЧЕРЕЗ БРАУЗЕР (ДОБАВЛЕНО СЮДА)
+  # 🟢 Веб-админка для MongoDB (Доступна в браузере)
   mongo-express:
     image: mongo-express:latest
     container_name: logistics-mongo-express
@@ -50,14 +50,14 @@ services:
     ports:
       - "8081:8081" # Порт, который будем открывать в браузере
     environment:
-      ME_CONFIG_MONGODB_SERVER: logistics-mongodb # Имя контейнера Mongo, к которому подключаемся
-      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_SERVER: mongodb # Строго имя сервиса из compose
+      ME_CONFIG_MONGODB_PORT: 27017 # 👈 Здесь ОСТАЕТСЯ 27017, т.к. админка общается с Mongo внутри сети Docker напрямую
 
       # 🟢 ОТКЛЮЧАЕМ ТРЕБОВАНИЕ ПАРОЛЯ ПРИ ВХОДЕ В БРАУЗЕР (для разработки) // по умолчанию: Username:admin Password:pass
       ME_CONFIG_BASICAUTH: "false"
 
 
-# Добавляю теперь   keycloak:
+  # 🔐 Инфраструктура Keycloak
   postgres-keycloak:
     image: postgres:16-alpine
     container_name: logistics-postgres-keycloak
