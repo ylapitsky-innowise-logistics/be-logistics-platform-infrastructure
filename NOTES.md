@@ -9,14 +9,14 @@
 ## Именование Схем (Schema)
 ### Формат: {service_name}_schema
 
-| Сервис 	              | Схема                 |
-|:----------------------|:----------------------|
-| User Service	         | user_schema          |
-| Transport Service	    | transport_schema     |
-| Delivery Service	     | delivery_schema      |
-| Cargo Service	        | cargo_schema         |
-| Payment Service	      | payment_schema       |
-| Notification Service	 | notification_schema  | 
+| Сервис 	             | Схема                 |
+|:---------------------|:----------------------|
+| User Service	        | user_schema          |
+| Transport Service	   | transport_schema     |
+| Delivery Service	    | delivery_schema      |
+| Cargo Service	       | cargo_schema         |
+| Payment Service	     | payment_schema       |
+| Notification Service	| notification_schema  | 
 
 ### Порт: 5432
 - POSTGRES_DB: postgres

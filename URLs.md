@@ -1,5 +1,5 @@
 
-### **`User Service`:** ok  
+### User Service
 https://github.com/yury-connect/be-logistics-platform-user-service.git  
 git@github.com:yury-connect/be-logistics-platform-user-service.git  
   
@@ -15,7 +15,7 @@ git@github.com:yury-connect/be-logistics-platform-delivery-service.git
 https://github.com/yury-connect/be-logistics-platform-transport-service.git  
 git@github.com:yury-connect/be-logistics-platform-transport-service.git  
   
-### **`Notification Service`:** ok  
+### Notification Service
 https://github.com/yury-connect/be-logistics-platform-notification-service.git  
 git@github.com:yury-connect/be-logistics-platform-notification-service.git  
   
@@ -23,7 +23,7 @@ git@github.com:yury-connect/be-logistics-platform-notification-service.git
 https://github.com/yury-connect/be-logistics-platform-payment-service.git  
 git@github.com:yury-connect/be-logistics-platform-payment-service.git  
   
-### **`Infrastructure`:** ok  
+### Infrastructure
 https://github.com/yury-connect/be-logistics-platform-infrastructure.git  
 git@github.com:yury-connect/be-logistics-platform-infrastructure.git  
   
