@@ -11,7 +11,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5439:5432"  # 👈 1. Изменили ВНЕШНИЙ порт на 5439 для предотвращения конфликтов
+      - "5433:5432"  # 👈 1. Изменили ВНЕШНИЙ порт на 5433 для предотвращения конфликтов
     volumes:
       - postgres_data:/var/lib/postgresql/data # Так контейнер НЕ использует анонимный volume, который удаляется при docker-compose down -v
       - ./postgres:/docker-entrypoint-initdb.d
@@ -30,7 +30,7 @@ services:
 #      MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: logistics_cargo_mongo_db  # 👈 1. Поменяли имя дефолтной БД
     ports:
-      - "27020:27017"  # 👈 2. Поменяли ВНЕШНИЙ порт на 27020. Внутри контейнера всегда 27017.
+      - "27018:27017"  # 👈 2. Поменяли ВНЕШНИЙ порт на 27018. Внутри контейнера всегда 27017.
     volumes:
       - mongo_data:/data/db   # 👈именую volume
     healthcheck: # Проверка готовности MongoDB
@@ -48,7 +48,7 @@ services:
       mongodb:
         condition: service_healthy # Ждем, пока Mongo успешно пройдет свой пинг-тест
     ports:
-      - "8081:8081" # Порт, который будем открывать в браузере
+      - "8888:8081" # Порт, который будем открывать в браузере
     environment:
       ME_CONFIG_MONGODB_SERVER: mongodb # Строго имя сервиса из compose
       ME_CONFIG_MONGODB_PORT: 27017 # 👈 Здесь ОСТАЕТСЯ 27017, т.к. админка общается с Mongo внутри сети Docker напрямую
@@ -66,7 +66,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=keycloak
     ports:
-      - "5433:5432"
+      - "5434:5432"
     volumes:
       - postgres_keycloak_data:/var/lib/postgresql/data
     healthcheck:
