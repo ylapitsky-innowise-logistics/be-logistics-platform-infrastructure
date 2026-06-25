@@ -10,6 +10,7 @@ services:
       - POSTGRES_DB=logistics_platform_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - TZ=Europe/Moscow  # 👈 ПОСТГРЕС в часовой пояс МСК (GMT+3)
     ports:
       - "5433:5432"  # 👈 1. Изменили ВНЕШНИЙ порт на 5433 для предотвращения конфликтов
     volumes:
@@ -29,6 +30,7 @@ services:
 #      MONGO_INITDB_ROOT_USERNAME: root  # 👈 ЗАКОММЕНТИРОВАЛ для разработки, потом включу (без аутентификации для разработки)
 #      MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: logistics_cargo_mongo_db  # 👈 1. Поменяли имя дефолтной БД
+      TZ: Europe/Moscow  # 👈 НАУЧИТ МОНГУ ВРЕМЕНИ МСК (GMT+3)
     ports:
       - "27018:27017"  # 👈 2. Поменяли ВНЕШНИЙ порт на 27018. Внутри контейнера всегда 27017.
     volumes:
