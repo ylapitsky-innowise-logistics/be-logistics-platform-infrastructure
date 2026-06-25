@@ -10,6 +10,7 @@ services:
       - POSTGRES_DB=logistics_platform_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - TZ=Europe/Moscow  # 👈 ПОСТГРЕС в часовой пояс МСК (GMT+3)
     ports:
       - "5433:5432"  # 👈 1. Изменили ВНЕШНИЙ порт на 5433 для предотвращения конфликтов
     volumes:
@@ -26,9 +27,10 @@ services:
     image: mongo:7
     container_name: logistics-mongo_db
     environment:
-#      MONGO_INITDB_ROOT_USERNAME: root  # 👈 ЗАКОММЕНТИРОВАЛ для разработки, потом включу (без аутентификации для разработки)
-#      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: logistics_cargo_mongo_db  # 👈 1. Поменяли имя дефолтной БД
+#      - MONGO_INITDB_ROOT_USERNAME=root  # 👈 ЗАКОММЕНТИРОВАЛ для разработки, потом включу (без аутентификации для разработки)
+#      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=logistics_cargo_mongo_db  # 👈 1. Поменяли имя дефолтной БД
+      - TZ=Europe/Moscow  # 👈 НАУЧИТ МОНГУ ВРЕМЕНИ МСК (GMT+3)
     ports:
       - "27018:27017"  # 👈 2. Поменяли ВНЕШНИЙ порт на 27018. Внутри контейнера всегда 27017.
     volumes:
@@ -50,11 +52,11 @@ services:
     ports:
       - "8888:8081" # Порт, который будем открывать в браузере
     environment:
-      ME_CONFIG_MONGODB_SERVER: mongodb # Строго имя сервиса из compose
-      ME_CONFIG_MONGODB_PORT: 27017 # 👈 Здесь ОСТАЕТСЯ 27017, т.к. админка общается с Mongo внутри сети Docker напрямую
+      - ME_CONFIG_MONGODB_SERVER=mongodb # Строго имя сервиса из compose
+      - ME_CONFIG_MONGODB_PORT=27017 # 👈 Здесь ОСТАЕТСЯ 27017, т.к. админка общается с Mongo внутри сети Docker напрямую
 
       # 🟢 ОТКЛЮЧАЕМ ТРЕБОВАНИЕ ПАРОЛЯ ПРИ ВХОДЕ В БРАУЗЕР (для разработки) // по умолчанию: Username:admin Password:pass
-      ME_CONFIG_BASICAUTH: "false"
+      - ME_CONFIG_BASICAUTH=false
 
 
   # 🔐 Инфраструктура Keycloak
@@ -84,14 +86,14 @@ services:
     ports:
       - "8080:8080"
     environment:
-      KC_BOOTSTRAP_ADMIN_USERNAME: admin
-      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
-      KC_DB: postgres
-      KC_DB_URL_HOST: postgres-keycloak
-      KC_DB_URL_PORT: 5432
-      KC_DB_URL_DATABASE: keycloak
-      KC_DB_USERNAME: postgres
-      KC_DB_PASSWORD: postgres
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+      - KC_DB=postgres
+      - KC_DB_URL_HOST=postgres-keycloak
+      - KC_DB_URL_PORT=5432
+      - KC_DB_URL_DATABASE=keycloak
+      - KC_DB_USERNAME=postgres
+      - KC_DB_PASSWORD=postgres
     volumes:
       - ./keycloak/realms:/opt/keycloak/data/import
       - ./keycloak/exports:/tmp/keycloak-export
