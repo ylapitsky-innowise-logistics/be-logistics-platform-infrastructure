@@ -82,7 +82,8 @@ services:
     image: quay.io/keycloak/keycloak:26.0.7
     container_name: logistics-keycloak
     depends_on:
-      - postgres-keycloak
+      postgres-keycloak:
+        condition: service_healthy # Keycloak честно дождется готовности базы!
     command: [ "start-dev", "--import-realm" ]
     ports:
       - "8080:8080"
