@@ -30,7 +30,7 @@ services:
 #      - MONGO_INITDB_ROOT_USERNAME=root  # 👈 ЗАКОММЕНТИРОВАЛ для разработки, потом включу (без аутентификации для разработки)
 #      - MONGO_INITDB_ROOT_PASSWORD=root
       - MONGO_INITDB_DATABASE=logistics_cargo_mongo_db  # 👈 1. Поменяли имя дефолтной БД
-      - TZ=Europe/Moscow  # 👈 НАУЧИТ МОНГУ ВРЕМЕНИ МСК (GMT+3)
+      - TZ=Europe/Moscow        # 👈 НАУЧИТ МОНГУ ВРЕМЕНИ МСК (GMT+3)
     ports:
       - "27018:27017"  # 👈 2. Поменяли ВНЕШНИЙ порт на 27018. Внутри контейнера всегда 27017.
     volumes:
@@ -57,7 +57,7 @@ services:
 
       # 🟢 ОТКЛЮЧАЕМ ТРЕБОВАНИЕ ПАРОЛЯ ПРИ ВХОДЕ В БРАУЗЕР (для разработки) // по умолчанию: Username:admin Password:pass
       - ME_CONFIG_BASICAUTH=false
-
+      - TZ=Europe/Moscow
 
   # 🔐 Инфраструктура Keycloak
   postgres-keycloak:
@@ -67,7 +67,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=keycloak
-      - TZ=Europe/Moscow  # 👈 ПОСТГРЕС в часовой пояс МСК (GMT+3)
+      - TZ=Europe/Moscow        # 👈 ПОСТГРЕС в часовой пояс МСК (GMT+3)
     ports:
       - "5434:5432"
     volumes:
@@ -88,6 +88,7 @@ services:
     ports:
       - "8080:8080"
     environment:
+      - TZ=Europe/Moscow      # 👈 КЕЙКЛОК в часовой пояс МСК (GMT+3)
       - KC_BOOTSTRAP_ADMIN_USERNAME=admin
       - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
       - KC_DB=postgres
