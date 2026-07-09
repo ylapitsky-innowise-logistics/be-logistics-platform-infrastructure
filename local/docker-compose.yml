@@ -101,6 +101,20 @@ services:
       - ./keycloak/realms:/opt/keycloak/data/import
       - ./keycloak/exports:/tmp/keycloak-export
 
+  hoppscotch:
+    image: hoppscotch/hoppscotch:latest
+    container_name: logistics-hoppscotch
+    network_mode: host   # 👈 ДОБАВИТЬ
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/hoppscotch
+      - BASE_URL=http://localhost:3000 # 👈 ДОБАВИТЬ // удалить
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   mongo_data:
