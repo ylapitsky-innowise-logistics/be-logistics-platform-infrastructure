@@ -1,0 +1,206 @@
+[
+  {
+    "v": 12,
+    "name": "Cargo",
+    "folders": [
+      {
+        "v": 12,
+        "name": "Postgres",
+        "folders": [
+          {
+            "v": 12,
+            "name": "Reservation",
+            "folders": [],
+            "requests": [
+              {
+                "v": "17",
+                "name": "Просмотреть все активные -РЕЗЕРВИРОВАНИЕ-",
+                "method": "GET",
+                "endpoint": "http://localhost:8085/api/v1/catalog/reservations",
+                "params": [],
+                "headers": [],
+                "preRequestScript": "",
+                "testScript": "",
+                "auth": {
+                  "authType": "inherit",
+                  "authActive": true
+                },
+                "body": {
+                  "contentType": "application/x-www-form-urlencoded",
+                  "body": "# is_active: true\nis_active: false"
+                },
+                "requestVariables": [],
+                "responses": {},
+                "description": null
+              },
+              {
+                "v": "17",
+                "name": "Просмотреть все активные -РЕЗЕРВИРОВАНИЕ-",
+                "method": "GET",
+                "endpoint": "http://localhost:8085/api/v1/catalog/reservations",
+                "params": [],
+                "headers": [],
+                "preRequestScript": "",
+                "testScript": "",
+                "auth": {
+                  "authType": "inherit",
+                  "authActive": true
+                },
+                "body": {
+                  "contentType": "application/x-www-form-urlencoded",
+                  "body": "is_active: true\nis_active: false"
+                },
+                "requestVariables": [],
+                "responses": {},
+                "description": null
+              }
+            ],
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "headers": [],
+            "variables": [],
+            "description": null,
+            "preRequestScript": "",
+            "testScript": ""
+          },
+          {
+            "v": 12,
+            "name": "работа_с Sku",
+            "folders": [],
+            "requests": [
+              {
+                "v": "17",
+                "name": "просмотр списка Sku",
+                "method": "GET",
+                "endpoint": "http://localhost:8085/api/v1/catalog/skus",
+                "params": [
+                  {
+                    "key": "page",
+                    "value": "0",
+                    "active": false,
+                    "description": "2️⃣ Вторая страница"
+                  },
+                  {
+                    "key": "size",
+                    "value": "20",
+                    "active": false,
+                    "description": "2️⃣ 20 записей на страницу"
+                  },
+                  {
+                    "key": "sort",
+                    "value": "sku.name,asc",
+                    "active": false,
+                    "description": "3️⃣ Сортировка по названию артикула (A → Z)"
+                  },
+                  {
+                    "key": "sort",
+                    "value": "totalQuantity,desc",
+                    "active": false,
+                    "description": "4️⃣ Сортировка по количеству (сначала самые популярные)"
+                  }
+                ],
+                "headers": [],
+                "preRequestScript": "",
+                "testScript": "",
+                "auth": {
+                  "authType": "inherit",
+                  "authActive": true
+                },
+                "body": {
+                  "contentType": null,
+                  "body": null
+                },
+                "requestVariables": [],
+                "responses": {},
+                "description": null
+              }
+            ],
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "headers": [],
+            "variables": [],
+            "description": null,
+            "preRequestScript": "",
+            "testScript": ""
+          },
+          {
+            "v": 12,
+            "name": "работа_с Cargo",
+            "folders": [],
+            "requests": [],
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "headers": [],
+            "variables": [],
+            "description": null,
+            "preRequestScript": "",
+            "testScript": ""
+          }
+        ],
+        "requests": [
+          {
+            "v": "17",
+            "name": "генерация_сущностей",
+            "method": "POST",
+            "endpoint": "http://localhost:8085/api/v1/catalog/test-data/generate?cargos-quantity=15&pre-clean=true",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/x-www-form-urlencoded",
+              "body": "cargos-quantity: 15\npre-clean: true"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          }
+        ],
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "headers": [],
+        "variables": [],
+        "description": null,
+        "preRequestScript": "",
+        "testScript": ""
+      },
+      {
+        "v": 12,
+        "name": "Mongo",
+        "folders": [],
+        "requests": [],
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "headers": [],
+        "variables": [],
+        "description": null,
+        "preRequestScript": "",
+        "testScript": ""
+      }
+    ],
+    "requests": [],
+    "auth": {
+      "authType": "none",
+      "authActive": true
+    },
+    "headers": [],
+    "variables": [],
+    "description": "",
+    "preRequestScript": "",
+    "testScript": ""
+  }
+]

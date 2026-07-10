@@ -104,12 +104,12 @@ services:
   hoppscotch:
     image: hoppscotch/hoppscotch:latest
     container_name: logistics-hoppscotch
-    network_mode: host   # 👈 ДОБАВИТЬ
+#    network_mode: host   # 👈 ДОБАВИТЬ
     ports:
-      - "3000:3000"
+      - "3030:3000"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/hoppscotch
-      - BASE_URL=http://localhost:3000 # 👈 ДОБАВИТЬ // удалить
+      - BASE_URL=http://localhost:3030 # 👈 ДОБАВИТЬ // удалить
     depends_on:
       postgres:
         condition: service_healthy
@@ -119,3 +119,8 @@ volumes:
   postgres_data:
   mongo_data:
   postgres_keycloak_data:
+
+networks:
+  default:
+    name: logistics-network
+    driver: bridge
