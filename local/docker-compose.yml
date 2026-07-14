@@ -27,29 +27,6 @@ services:
     image: dbgate/dbgate:latest
     container_name: logistics-dbgate
     environment:
-#      # Подключение к PostgreSQL
-#      # Идентификаторы слотов в верхнем регистре
-#      - CONNECTIONS=POSTGRES,MONGO
-#
-#      # 🎯 Слот №1: PostgreSQL
-#      - LABEL_POSTGRES=PostgreSQL
-#      - ENGINE_POSTGRES=postgres        # 👈 СТРОГО 'postgres' (внутренний ID драйвера в DbGate)
-#      - SERVER_POSTGRES=postgres
-#      - PORT_POSTGRES=5432
-#      - USER_POSTGRES=postgres
-#      - PASSWORD_POSTGRES=postgres
-#      - DATABASE_POSTGRES=logistics_platform_db
-#
-#      # 🎯 Слот №2: MongoDB
-#      - LABEL_MONGO=MongoDB
-#      - ENGINE_MONGO=mongo            # 👈 СТРОГО 'mongo' (внутренний ID драйвера в DbGate)
-#      - SERVER_MONGO=mongodb
-#      - PORT_MONGO=27017
-#      - USER_MONGO=
-#      - PASSWORD_MONGO=
-#      - DATABASE_MONGO=logistics_cargo_mongo_db
-#      - AUTH_SOURCE_MONGO=admin
-
       # Таймзона
       - TZ=Europe/Moscow
     ports:
@@ -80,24 +57,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-
-  # 🟢 Веб-админка для MongoDB (Доступна в браузере)
-  mongo-express:
-    image: mongo-express:latest
-    container_name: logistics-mongo-express
-    restart: always
-    depends_on:
-      mongodb:
-        condition: service_healthy # Ждем, пока Mongo успешно пройдет свой пинг-тест
-    ports:
-      - "8888:8081" # Порт, который будем открывать в браузере
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=mongodb # Строго имя сервиса из compose
-      - ME_CONFIG_MONGODB_PORT=27017 # 👈 Здесь ОСТАЕТСЯ 27017, т.к. админка общается с Mongo внутри сети Docker напрямую
-
-      # 🟢 ОТКЛЮЧАЕМ ТРЕБОВАНИЕ ПАРОЛЯ ПРИ ВХОДЕ В БРАУЗЕР (для разработки) // по умолчанию: Username:admin Password:pass
-      - ME_CONFIG_BASICAUTH=false
-      - TZ=Europe/Moscow
 
   # 🔐 Инфраструктура Keycloak
   postgres-keycloak:
