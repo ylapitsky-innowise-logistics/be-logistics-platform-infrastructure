@@ -71,7 +71,7 @@
             }
           ],
           "headers": [],
-          "endpoint": "http://<<base_url>>/api/v1/catalog/reservations",
+          "endpoint": "<<base_url>>/api/v1/catalog/reservations",
           "responses": {},
           "testScript": "",
           "description": null,
@@ -467,18 +467,18 @@
         {
           "key": "pre-clean",
           "value": "true",
-          "active": false,
+          "active": true,
           "description": "Предварительно УДАЛИТЬ ВСЁ!"
         },
         {
           "key": "pre-clean",
           "value": "false",
-          "active": true,
+          "active": false,
           "description": ""
         }
       ],
       "headers": [],
-      "endpoint": "<<base_url>>/api/v1/catalog/test-data/generate?cargos-quantity=15&pre-clean=true",
+      "endpoint": "<<base_url>>/api/v1/catalog/test-data/generate",
       "responses": {},
       "testScript": "",
       "description": null,
