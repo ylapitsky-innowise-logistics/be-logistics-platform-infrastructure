@@ -1,0 +1,499 @@
+{
+  "v": 12,
+  "id": "cmrm4u9yc1nwoe41jmd1ymve8",
+  "name": "Cargo-Service",
+  "folders": [
+    {
+      "v": 12,
+      "id": "cmrm51q3u1nxfe41jy34bjom7",
+      "name": "Резервирование",
+      "folders": [],
+      "requests": [
+        {
+          "v": "17",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "body": null,
+            "contentType": null
+          },
+          "name": "Просмотреть все активные",
+          "method": "GET",
+          "params": [
+            {
+              "key": "is_active",
+              "value": "true",
+              "active": false,
+              "description": ""
+            },
+            {
+              "key": "is_active",
+              "value": "false",
+              "active": false,
+              "description": ""
+            }
+          ],
+          "headers": [],
+          "endpoint": "<<base_url>>/api/v1/catalog/reservations",
+          "responses": {},
+          "testScript": "",
+          "description": null,
+          "preRequestScript": "",
+          "requestVariables": [],
+          "id": "cmrm527e21nxse41jckkvbet7"
+        },
+        {
+          "v": "17",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "body": null,
+            "contentType": null
+          },
+          "name": "Просмотреть все активные - Дублировать",
+          "method": "GET",
+          "params": [
+            {
+              "key": "is_active",
+              "value": "true",
+              "active": false,
+              "description": ""
+            },
+            {
+              "key": "is_active",
+              "value": "false",
+              "active": false,
+              "description": ""
+            }
+          ],
+          "headers": [],
+          "endpoint": "http://<<base_url>>/api/v1/catalog/reservations",
+          "responses": {},
+          "testScript": "",
+          "description": null,
+          "preRequestScript": "",
+          "requestVariables": [],
+          "id": "cmrm596xb1ny9e41jxucqnu98"
+        },
+        {
+          "v": "17",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "body": "[\n  {\n    \"skuId\": 1,\n    \"quantity\": 1,\n    \"preferredCargoIds\": []\n  },\n  {\n    \"skuId\": 2,\n    \"quantity\": 1,\n    \"preferredCargoIds\": []\n  }\n]",
+            "contentType": "application/json"
+          },
+          "name": "Резервировать ПРОИЗВОЛЬНОЕ",
+          "method": "POST",
+          "params": [],
+          "headers": [],
+          "endpoint": "<<base_url>>/api/v1/catalog/reservations",
+          "responses": {},
+          "testScript": "",
+          "description": null,
+          "preRequestScript": "",
+          "requestVariables": [],
+          "id": "cmrm5vbru1o0xe41jv1s2jb0i"
+        },
+        {
+          "v": "17",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "body": "[\n  {\n    \"skuId\": 2,\n    \"quantity\": 2,\n    \"preferredCargoIds\": [14, 19, 63]\n  },\n  {\n    \"skuId\": 3,\n    \"quantity\": 3,\n    \"preferredCargoIds\": [8, 18]\n  }\n]",
+            "contentType": "application/json"
+          },
+          "name": "Резервировать ПРОИЗВОЛЬНОЕ ВЫБРАННЫХ",
+          "method": "POST",
+          "params": [],
+          "headers": [],
+          "endpoint": "<<base_url>>/api/v1/catalog/reservations",
+          "responses": {},
+          "testScript": "",
+          "description": null,
+          "preRequestScript": "",
+          "requestVariables": [],
+          "id": "cmrm5y8l713ktet1jmda3cign"
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": 12,
+      "id": "cmrm5ervb1nyye41jp99fqrsx",
+      "name": "Images",
+      "folders": [
+        {
+          "v": 12,
+          "id": "cmrm5f2w51nyze41jf5ke4ovg",
+          "name": "Cargo",
+          "folders": [],
+          "requests": [
+            {
+              "v": "17",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "body": null,
+                "contentType": null
+              },
+              "name": "САМА картинка CARGO по ее id (id картинки CARGO)",
+              "method": "GET",
+              "params": [],
+              "headers": [],
+              "endpoint": "<<base_url>>/api/v1/catalog/images/cargos/6a5647dd3e18f154149ed9a3",
+              "responses": {},
+              "testScript": "",
+              "description": null,
+              "preRequestScript": "",
+              "requestVariables": [],
+              "id": "cmrm5psya13kjet1j0vdsowxg"
+            },
+            {
+              "v": "17",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "body": null,
+                "contentType": null
+              },
+              "name": "Cargo галерея картинок по id Cargo",
+              "method": "GET",
+              "params": [
+                {
+                  "key": "page",
+                  "value": "0",
+                  "active": true,
+                  "description": ""
+                },
+                {
+                  "key": "size",
+                  "value": "2",
+                  "active": true,
+                  "description": ""
+                }
+              ],
+              "headers": [],
+              "endpoint": "<<base_url>>/api/v1/catalog/images/cargos/gallery/3",
+              "responses": {},
+              "testScript": "",
+              "description": null,
+              "preRequestScript": "",
+              "requestVariables": [],
+              "id": "cmrm5sr4r1o0ve41jbslfss38"
+            }
+          ],
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "headers": [],
+          "variables": [],
+          "description": null,
+          "preRequestScript": "",
+          "testScript": ""
+        },
+        {
+          "v": 12,
+          "id": "cmrm5fraq1nz6e41j8surhpc4",
+          "name": "Sku",
+          "folders": [],
+          "requests": [
+            {
+              "v": "17",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "body": null,
+                "contentType": null
+              },
+              "name": "Все картинки",
+              "method": "GET",
+              "params": [
+                {
+                  "key": "page",
+                  "value": "0",
+                  "active": true,
+                  "description": "Номер страницы"
+                },
+                {
+                  "key": "size",
+                  "value": "20",
+                  "active": true,
+                  "description": "кол-во картинок на 1 странице"
+                }
+              ],
+              "headers": [],
+              "endpoint": "<<base_url>>/api/v1/catalog/images/skus",
+              "responses": {},
+              "testScript": "",
+              "description": null,
+              "preRequestScript": "",
+              "requestVariables": [],
+              "id": "cmrm5h65y13iget1jvdkmdayr"
+            },
+            {
+              "v": "17",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "body": null,
+                "contentType": null
+              },
+              "name": "САМА картинка SKU по ее id (id картинки SKU)",
+              "method": "GET",
+              "params": [],
+              "headers": [],
+              "endpoint": "<<base_url>>/api/v1/catalog/images/skus/6a5647cd3e18f154149ed85e",
+              "responses": {},
+              "testScript": "",
+              "description": null,
+              "preRequestScript": "",
+              "requestVariables": [],
+              "id": "cmrm5jld813jdet1jk6l74kq0"
+            },
+            {
+              "v": "17",
+              "auth": {
+                "authType": "inherit",
+                "authActive": true
+              },
+              "body": {
+                "body": null,
+                "contentType": null
+              },
+              "name": "SKU галерея картинок по id SKU",
+              "method": "GET",
+              "params": [
+                {
+                  "key": "page",
+                  "value": "0",
+                  "active": true,
+                  "description": ""
+                },
+                {
+                  "key": "size",
+                  "value": "30",
+                  "active": true,
+                  "description": ""
+                }
+              ],
+              "headers": [],
+              "endpoint": "<<base_url>>/api/v1/catalog/images/skus/gallery/1",
+              "responses": {},
+              "testScript": "",
+              "description": null,
+              "preRequestScript": "",
+              "requestVariables": [],
+              "id": "cmrm5n04313khet1jdkdhvddb"
+            }
+          ],
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "headers": [],
+          "variables": [],
+          "description": null,
+          "preRequestScript": "",
+          "testScript": ""
+        }
+      ],
+      "requests": [],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": 12,
+      "id": "cmrm693d613l9et1jtldicnz3",
+      "name": "Sku",
+      "folders": [],
+      "requests": [
+        {
+          "v": "17",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "body": null,
+            "contentType": null
+          },
+          "name": "просмотр имеющихся Sku",
+          "method": "GET",
+          "params": [
+            {
+              "key": "page",
+              "value": "3",
+              "active": true,
+              "description": "2️⃣ № страницы"
+            },
+            {
+              "key": "size",
+              "value": "2",
+              "active": true,
+              "description": "2️⃣ кол-во на страницу"
+            },
+            {
+              "key": "sort",
+              "value": "sku.name,asc",
+              "active": false,
+              "description": "3️⃣ Сортировка по названию артикула (A → Z)"
+            },
+            {
+              "key": "sort",
+              "value": "sku.id",
+              "active": false,
+              "description": ""
+            },
+            {
+              "key": "sort",
+              "value": "totalQuantity,desc",
+              "active": false,
+              "description": "4️⃣ Сортировка по количеству (сначала самые популярные)"
+            }
+          ],
+          "headers": [],
+          "endpoint": "<<base_url>>/api/v1/catalog/skus",
+          "responses": {},
+          "testScript": "",
+          "description": null,
+          "preRequestScript": "",
+          "requestVariables": [],
+          "id": "cmrm69l6g1o1oe41jy77uz73l"
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    },
+    {
+      "v": 12,
+      "id": "cmrm6hx8j13ljet1j22405sy8",
+      "name": "Cargo",
+      "folders": [],
+      "requests": [
+        {
+          "v": "17",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "body": null,
+            "contentType": null
+          },
+          "name": "просмотр имеющихся Cargo",
+          "method": "GET",
+          "params": [],
+          "headers": [],
+          "endpoint": "<<base_url>>/api/v1/catalog/cargos",
+          "responses": {},
+          "testScript": "",
+          "description": null,
+          "preRequestScript": "",
+          "requestVariables": [],
+          "id": "cmrm6ic6l1o1ue41j1qblwmq0"
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "variables": [],
+      "description": null,
+      "preRequestScript": "",
+      "testScript": ""
+    }
+  ],
+  "requests": [
+    {
+      "v": "17",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "body": null,
+        "contentType": null
+      },
+      "name": "Генерация тестовых данных",
+      "method": "POST",
+      "params": [
+        {
+          "key": "cargos-quantity",
+          "value": "300",
+          "active": true,
+          "description": "кол-во CARGO"
+        },
+        {
+          "key": "pre-clean",
+          "value": "true",
+          "active": false,
+          "description": "Предварительно УДАЛИТЬ ВСЁ!"
+        },
+        {
+          "key": "pre-clean",
+          "value": "false",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "headers": [],
+      "endpoint": "<<base_url>>/api/v1/catalog/test-data/generate?cargos-quantity=15&pre-clean=true",
+      "responses": {},
+      "testScript": "",
+      "description": null,
+      "preRequestScript": "",
+      "requestVariables": [],
+      "id": "cmrm62ili13kxet1jk2gzsqez"
+    }
+  ],
+  "auth": {
+    "authType": "inherit",
+    "authActive": true
+  },
+  "headers": [],
+  "variables": [],
+  "description": null,
+  "preRequestScript": "",
+  "testScript": ""
+}
