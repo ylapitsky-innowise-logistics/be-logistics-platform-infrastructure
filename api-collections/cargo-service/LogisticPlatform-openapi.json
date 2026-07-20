@@ -1,0 +1,1004 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "LogisticPlatform",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/catalog/test-data/generate": {
+      "post": {
+        "summary": "Генерация тестовых данных",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "_",
+        "tags": [
+          "Cargo-Service"
+        ],
+        "parameters": [
+          {
+            "name": "cargos-quantity",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "300",
+            "description": "кол-во CARGO"
+          },
+          {
+            "name": "pre-clean",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "true",
+            "description": "Предварительно УДАЛИТЬ ВСЁ!"
+          }
+        ]
+      }
+    },
+    "/api/v1/catalog/addresses": {
+      "post": {
+        "summary": "Адрес -СОЗДАТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "__",
+        "tags": [
+          "Cargo-Service/Address"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "country": "Беларусь",
+                "zipCode": "220000",
+                "city": "Минск",
+                "microdistrict": "Новая Боровая",
+                "street": "ул. Центральная",
+                "house": 15,
+                "block": "А",
+                "apartment": "122"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Адрес -ПОЛУЧИТЬ ВСЕ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___",
+        "tags": [
+          "Cargo-Service/Address"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "1"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "3"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "id"
+          }
+        ]
+      }
+    },
+    "/api/v1/catalog/addresses/1": {
+      "get": {
+        "summary": "Адрес -ПОЛУЧИТЬ по id",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___id",
+        "tags": [
+          "Cargo-Service/Address"
+        ]
+      },
+      "put": {
+        "summary": "Адрес -ИЗМЕНИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___2",
+        "tags": [
+          "Cargo-Service/Address"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "country": "Беларусь",
+                "zipCode": "220000",
+                "city": "Минск",
+                "microdistrict": "Новая Боровая",
+                "street": "ул. Центральная",
+                "house": 15,
+                "block": "А",
+                "apartment": "122"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/catalog/addresses/13": {
+      "delete": {
+        "summary": "Адрес -УДАЛИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___3",
+        "tags": [
+          "Cargo-Service/Address"
+        ]
+      }
+    },
+    "/api/v1/catalog/locations": {
+      "post": {
+        "summary": "Локация -СОЗДАТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___4",
+        "tags": [
+          "Cargo-Service/Location"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "rack": "Стеллаж А",
+                "shelf": "Полка 7",
+                "addressId": 2
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Локация -ПОЛУЧИТЬ ВСЕ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "____2",
+        "tags": [
+          "Cargo-Service/Location"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "id"
+          }
+        ]
+      }
+    },
+    "/api/v1/catalog/locations/1": {
+      "get": {
+        "summary": "Локация -ПОЛУЧИТЬ по id",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___id_2",
+        "tags": [
+          "Cargo-Service/Location"
+        ]
+      }
+    },
+    "/api/v1/catalog/locations/34": {
+      "delete": {
+        "summary": "Локация -УДАЛИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___5",
+        "tags": [
+          "Cargo-Service/Location"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        }
+      }
+    },
+    "/api/v1/catalog/dimensions": {
+      "post": {
+        "summary": "Габариты -СОЗДАТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___6",
+        "tags": [
+          "Cargo-Service/Dimension"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "length": 12.5,
+                "width": 8.1,
+                "height": 5
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Габариты -ПОЛУЧИТЬ ВСЕ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "____3",
+        "tags": [
+          "Cargo-Service/Dimension"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "id"
+          }
+        ]
+      }
+    },
+    "/api/v1/catalog/dimensions/1": {
+      "get": {
+        "summary": "Габариты -ПОЛУЧИТЬ по id",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___id_3",
+        "tags": [
+          "Cargo-Service/Dimension"
+        ]
+      },
+      "put": {
+        "summary": "Габариты -ПОЛУЧИТЬ ИЗМЕНИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "____4",
+        "tags": [
+          "Cargo-Service/Dimension"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "1"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "id"
+          }
+        ]
+      }
+    },
+    "/api/v1/catalog/dimensions/21": {
+      "delete": {
+        "summary": "Габариты -УДАЛИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___7",
+        "tags": [
+          "Cargo-Service/Dimension"
+        ]
+      }
+    },
+    "/api/v1/catalog/skus": {
+      "post": {
+        "summary": "Артикул -СОЗДАТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___8",
+        "tags": [
+          "Cargo-Service/Sku"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "3",
+            "description": "2️⃣ № страницы"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2",
+            "description": "2️⃣ кол-во на страницу"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "Ea-1024-2026",
+                "description": "Тестовый артикул"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Артикул -ПОЛУЧИТЬ ВСЕ-АГРЕГИРОВАНО",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "____",
+        "tags": [
+          "Cargo-Service/Sku"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "3",
+            "description": "2️⃣ № страницы"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2",
+            "description": "2️⃣ кол-во на страницу"
+          }
+        ]
+      }
+    },
+    "/api/v1/catalog/skus/1": {
+      "get": {
+        "summary": "Артикул -ПОЛУЧИТЬ по id",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___id_4",
+        "tags": [
+          "Cargo-Service/Sku"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "3",
+            "description": "2️⃣ № страницы"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2",
+            "description": "2️⃣ кол-во на страницу"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "EB-1234-4321",
+                "description": "Фиговина непонятного происхождения"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Артикул -ИЗМЕНИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___9",
+        "tags": [
+          "Cargo-Service/Sku"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "AA-1024-2026",
+                "description": "Тестовый1 артикул"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/catalog/skus/base": {
+      "get": {
+        "summary": "Артикул -ПОЛУЧИТЬ ВСЕ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "____5",
+        "tags": [
+          "Cargo-Service/Sku"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0",
+            "description": "2️⃣ № страницы"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2",
+            "description": "2️⃣ кол-во на страницу"
+          }
+        ]
+      }
+    },
+    "/api/v1/catalog/skus/21": {
+      "delete": {
+        "summary": "Артикул -УДАЛИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___10",
+        "tags": [
+          "Cargo-Service/Sku"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "EB-1234-4321",
+                "description": "Фиговина непонятного происхождения"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/catalog/cargos": {
+      "post": {
+        "summary": "Товар -СОЗДАТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___11",
+        "tags": [
+          "Cargo-Service/Cargo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "skuId": 1,
+                "name": "Смартфон Galaxy S25",
+                "category": "ELECTRONICS",
+                "weight": 0.2,
+                "dimensionId": 1,
+                "price": 999.99,
+                "locationId": 1
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "просмотр имеющихся Cargo",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "_Cargo",
+        "tags": [
+          "Cargo-Service/Cargo"
+        ]
+      }
+    },
+    "/api/v1/catalog/cargos/1": {
+      "get": {
+        "summary": "Товар -ПОЛУЧИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___12",
+        "tags": [
+          "Cargo-Service/Cargo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "skuId": 1,
+                "name": "Смартфон Galaxy S25",
+                "category": "ELECTRONICS",
+                "weight": 0.2,
+                "dimensionId": 1,
+                "price": 999.99,
+                "locationId": 1
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Товар -ИЗМЕНИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___13",
+        "tags": [
+          "Cargo-Service/Cargo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "skuId": 1,
+                "name": "Смартфон Galaxy S25",
+                "category": "ELECTRONICS",
+                "weight": 0.2,
+                "dimensionId": 1,
+                "price": 999.99,
+                "locationId": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/catalog/cargos/301": {
+      "delete": {
+        "summary": "Товар -УДАЛИТЬ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "___14",
+        "tags": [
+          "Cargo-Service/Cargo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "skuId": 1,
+                "name": "Смартфон Galaxy S25",
+                "category": "ELECTRONICS",
+                "weight": 0.2,
+                "dimensionId": 1,
+                "price": 999.99,
+                "locationId": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/catalog/reservations": {
+      "get": {
+        "summary": "Просмотреть все активные",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "__2",
+        "tags": [
+          "Cargo-Service/Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "is_active",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "true"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Резервировать ПРОИЗВОЛЬНОЕ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "__3",
+        "tags": [
+          "Cargo-Service/Reservation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": [
+                {
+                  "skuId": 1,
+                  "quantity": 2,
+                  "preferredCargoIds": []
+                },
+                {
+                  "skuId": 2,
+                  "quantity": 1,
+                  "preferredCargoIds": []
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/catalog/reservations/1/cancel": {
+      "patch": {
+        "summary": "Снять Резервирование ПРОИЗВОЛЬНОЕ",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "__4",
+        "tags": [
+          "Cargo-Service/Reservation"
+        ]
+      }
+    },
+    "/api/v1/catalog/images/cargos/6a5647dd3e18f154149ed9a3": {
+      "get": {
+        "summary": "САМА картинка CARGO по ее id (id картинки CARGO)",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "_CARGO_id_id_CARGO",
+        "tags": [
+          "Cargo-Service/Images/Cargo"
+        ]
+      }
+    },
+    "/api/v1/catalog/images/cargos/gallery/3": {
+      "get": {
+        "summary": "Cargo галерея картинок по id Cargo",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "Cargo_id_Cargo",
+        "tags": [
+          "Cargo-Service/Images/Cargo"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2"
+          }
+        ]
+      }
+    },
+    "/api/v1/catalog/images/skus": {
+      "get": {
+        "summary": "Все картинки",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "__5",
+        "tags": [
+          "Cargo-Service/Images/Sku"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0",
+            "description": "Номер страницы"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "20",
+            "description": "кол-во картинок на 1 странице"
+          }
+        ]
+      }
+    },
+    "/api/v1/catalog/images/skus/6a5647cd3e18f154149ed85e": {
+      "get": {
+        "summary": "САМА картинка SKU по ее id (id картинки SKU)",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "_SKU_id_id_SKU",
+        "tags": [
+          "Cargo-Service/Images/Sku"
+        ]
+      }
+    },
+    "/api/v1/catalog/images/skus/gallery/1": {
+      "get": {
+        "summary": "SKU галерея картинок по id SKU",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "operationId": "SKU_id_SKU",
+        "tags": [
+          "Cargo-Service/Images/Sku"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "30"
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "<<base_url>>"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Cargo-Service"
+    },
+    {
+      "name": "Cargo-Service/Address"
+    },
+    {
+      "name": "Cargo-Service/Location"
+    },
+    {
+      "name": "Cargo-Service/Dimension"
+    },
+    {
+      "name": "Cargo-Service/Sku"
+    },
+    {
+      "name": "Cargo-Service/Cargo"
+    },
+    {
+      "name": "Cargo-Service/Reservation"
+    },
+    {
+      "name": "Cargo-Service/Images"
+    },
+    {
+      "name": "Cargo-Service/Images/Cargo"
+    },
+    {
+      "name": "Cargo-Service/Images/Sku"
+    }
+  ],
+  "x-hoppscotch-folder-tags": "slash",
+  "x-hoppscotch-dropped-requests": [
+    {
+      "tagPath": "Cargo-Service/Reservation",
+      "request": {
+        "v": "17",
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "body": {
+          "body": null,
+          "contentType": null
+        },
+        "name": "Просмотреть все активные - Дублировать",
+        "method": "GET",
+        "params": [],
+        "_ref_id": "req_mrm596nc_6c3a5b6d-b58d-42e1-9354-408a42d24f49",
+        "headers": [],
+        "endpoint": "<<base_url>>/api/v1/catalog/reservations",
+        "responses": {},
+        "testScript": "",
+        "description": null,
+        "preRequestScript": "",
+        "requestVariables": [],
+        "id": "cmrm596xb1ny9e41jxucqnu98"
+      }
+    },
+    {
+      "tagPath": "Cargo-Service/Reservation",
+      "request": {
+        "v": "17",
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "body": {
+          "body": "[\n  {\n    \"skuId\": 2,\n    \"quantity\": 2,\n    \"preferredCargoIds\": [14, 19, 63]\n  },\n  {\n    \"skuId\": 3,\n    \"quantity\": 3,\n    \"preferredCargoIds\": [8, 18]\n  }\n]",
+          "contentType": "application/json"
+        },
+        "name": "Резервировать ПРОИЗВОЛЬНОЕ ВЫБРАННЫХ",
+        "method": "POST",
+        "params": [],
+        "_ref_id": "req_mrm5y87l_6c9ce067-4dae-4e17-9d9e-8b5cd69f1930",
+        "headers": [],
+        "endpoint": "<<base_url>>/api/v1/catalog/reservations",
+        "responses": {},
+        "testScript": "",
+        "description": null,
+        "preRequestScript": "",
+        "requestVariables": [],
+        "id": "cmrm5y8l713ktet1jmda3cign"
+      }
+    }
+  ]
+}
