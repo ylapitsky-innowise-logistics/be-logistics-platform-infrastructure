@@ -105,7 +105,8 @@ services:
     image: apache/kafka:latest  # 👈 Официальный образ от Apache
     container_name: logistics-kafka
     ports:
-      - "9092:9092"
+      - "9092:9092"   # Внутренний порт (для Docker)
+      - "9094:9094"   # Внешний порт (для Spring / IDEA на ПК)
     environment:
       # ======== НАСТРОЙКИ РЕЖИМА KRaft ========
       # Уникальный ID узла в кластере
@@ -122,13 +123,15 @@ services:
       # На каких адресах и портах слушает Kafka
       # - PLAINTEXT://:9092 - для клиентских подключений
       # - CONTROLLER://:9093 - для внутреннего общения контроллеров
-      - KAFKA_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
 
-      # Как клиенты обращаются к Kafka (снаружи через localhost)
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+      # Слушаем на всех интерфейсах для PLAINTEXT (9092), EXTERNAL (9094) и CONTROLLER (9093)
+      - KAFKA_LISTENERS=PLAINTEXT://:9092,EXTERNAL://:9094,CONTROLLER://:9093
 
-      # Сопоставление протоколов с именами слушателей
-      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      # Объявляем адреса: внутри сети Docker хост 'kafka', а снаружи — 'localhost'
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
+
+      # Сопоставляем имена слушателей с протоколами
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
 
       # Имя слушателя для контроллера
       - KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
