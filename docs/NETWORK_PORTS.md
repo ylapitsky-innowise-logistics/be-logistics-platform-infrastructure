@@ -55,3 +55,16 @@
 **Запросы отправлять отсюда:** [`https://hoppscotch.io/`](https://hoppscotch.io/)
 
 ---
+## 📍 Шпаргалка по точкам подключения
+
+| **Сервис**                  | **Адрес для подключения с ПК (IDEA, DBeaver, браузер)** | **Адрес внутри сети Docker (между контейнерами)** |
+|:----------------------------|:--------------------------------------------------------|:--------------------------------------------------|
+| **Kafka (для Java/Spring)** | `localhost:9094`                                        | `kafka:9092`                                      |
+| **Kafka UI**                | [http://localhost:8090](http://localhost:8090/)         | —                                                 |
+| **PostgreSQL (Логистика)**  | `localhost:5433`                                        | `postgres:5432`                                   |
+| **PostgreSQL (Keycloak)**   | `localhost:5434`                                        | `postgres-keycloak:5432`                          |
+| **MongoDB**                 | `localhost:27018`                                       | `mongodb:27017`                                   |
+| **Keycloak**                | [http://localhost:8080](http://localhost:8080/)         | `keycloak:8080`                                   |
+| **DBGate (БД Клиент)**      | [http://localhost:5051](http://localhost:5051/)         | —                                                 |
+
+---

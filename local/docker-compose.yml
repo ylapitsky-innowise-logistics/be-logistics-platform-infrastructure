@@ -100,8 +100,86 @@ services:
       - ./keycloak/realms:/opt/keycloak/data/import
       - ./keycloak/exports:/tmp/keycloak-export
 
+  # 📨 Kafka Broker в режиме KRaft (без ZooKeeper)
+  kafka:
+    image: apache/kafka:latest  # 👈 Официальный образ от Apache
+    container_name: logistics-kafka
+    ports:
+      - "9092:9092"   # Внутренний порт (для Docker)
+      - "9094:9094"   # Внешний порт (для Spring / IDEA на ПК)
+    environment:
+      # ======== НАСТРОЙКИ РЕЖИМА KRaft ========
+      # Уникальный ID узла в кластере
+      - KAFKA_NODE_ID=1
+
+      # Роли: controller (управление кластером) + broker (обработка сообщений)
+      - KAFKA_PROCESS_ROLES=controller,broker
+
+      # Список узлов, которые могут участвовать в выборах лидера
+      # Формат: id@hostname:port (для одного узла)
+      - KAFKA_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+
+      # ======== НАСТРОЙКИ СЛУШАТЕЛЕЙ ========
+      # На каких адресах и портах слушает Kafka
+      # - PLAINTEXT://:9092 - для клиентских подключений
+      # - CONTROLLER://:9093 - для внутреннего общения контроллеров
+
+      # Слушаем на всех интерфейсах для PLAINTEXT (9092), EXTERNAL (9094) и CONTROLLER (9093)
+      - KAFKA_LISTENERS=PLAINTEXT://:9092,EXTERNAL://:9094,CONTROLLER://:9093
+
+      # Объявляем адреса: внутри сети Docker хост 'kafka', а снаружи — 'localhost'
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
+
+      # Сопоставляем имена слушателей с протоколами
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+
+      # Имя слушателя для контроллера
+      - KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
+
+      # Имя слушателя для общения между брокерами
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+
+      # ======== НАСТРОЙКИ ХРАНЕНИЯ ========
+      # Коэффициент репликации для системных топиков (для одного узла = 1)
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+
+      # Автоматическое создание топиков при первой отправке сообщения
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+
+      # Путь для хранения логов (должен совпадать с volume)
+      - KAFKA_LOG_DIRS=/var/lib/kafka/data
+
+      # Таймзона
+      - TZ=Europe/Moscow
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    user: "1000:1000"  # 🟢 Запускаем от пользователя с правами
+    healthcheck:
+#      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9092 || exit 1"]
+      test: [ "CMD-SHELL", "nc -z localhost 9092 || exit 1" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  # 📊 Веб-интерфейс для мониторинга Kafka
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: logistics-kafka-ui
+    depends_on:
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8090:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+      - TZ=Europe/Moscow
+
 volumes:
   postgres_data:
   mongo_data:
   postgres_keycloak_data:
   dbgate_data:
+  kafka_data:
